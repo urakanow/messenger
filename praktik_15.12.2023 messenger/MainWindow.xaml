@@ -5,29 +5,87 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:praktik_15._12._2023_messenger"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <!--<Window.Resources>
-        <local:SenderToBackgroundConverter x:Key="SenderToBackgroundConverter" />
-    </Window.Resources>-->
-    <Grid>
-        
-        <!--<StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
-            
-        </StackPanel>-->
-        <ListBox x:Name="ChatListBox" Grid.Row="0" ItemsSource="{Binding Messages}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Border Margin="5" Padding="10" BorderBrush="Black" BorderThickness="1">
-                        <TextBlock Text="{Binding Message}" />
-                    </Border>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
-                    <Setter Property="HorizontalAlignment" Value="{Binding HorizontalAlignment}" />
-                </Style>
-            </ListBox.ItemContainerStyle>
-        </ListBox>
+        Title="MainWindow" MinWidth="425" MinHeight="600" MaxWidth="425" MaxHeight="600">
 
-    </Grid>
+	<Window.Resources>
+		<Style TargetType="Button">
+			<Setter Property="Background" Value="White" />
+			<Setter Property="FontFamily" Value="Comic Sans MS" />
+			<Setter Property="Foreground" Value="Black" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10">
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+			<Style.Triggers>
+				<Trigger Property="IsMouseOver" Value="True">
+					<Setter Property="Background" Value="Black" />
+					<Setter Property="Foreground" Value="White" />
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+
+		<Style TargetType="TextBox">
+			<Setter Property="Margin" Value="10" />
+			<Setter Property="Padding" Value="5" />
+			<Setter Property="HorizontalAlignment" Value="Stretch" />
+			<Setter Property="BorderThickness" Value="1" />
+			<Setter Property="FontFamily" Value="Comic Sans MS" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="TextBox">
+						<Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10">
+							<ScrollViewer Name="PART_ContentHost" />
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style x:Key="LightLabelStyle" TargetType="Label">
+			<Setter Property="FontFamily" Value="Comic Sans MS" />
+			<Setter Property="Foreground" Value="Black" />
+		</Style>
+
+		<Style x:Key="DarkLabelStyle" TargetType="Label">
+			<Setter Property="FontFamily" Value="Comic Sans MS" />
+			<Setter Property="Foreground" Value="White" />
+		</Style>
+
+	</Window.Resources>
+
+	<Grid>
+
+		<ListBox x:Name="ChatListBox" Grid.Row="0" ItemsSource="{Binding Messages}">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border Margin="5" Padding="10" BorderBrush="Black" BorderThickness="1">
+						<TextBlock Text="{Binding Message}" />
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+			<ListBox.ItemContainerStyle>
+				<Style TargetType="ListBoxItem">
+					<Setter Property="HorizontalAlignment" Value="{Binding HorizontalAlignment}" />
+				</Style>
+			</ListBox.ItemContainerStyle>
+		</ListBox>
+
+		<Canvas>
+			<Button x:Name="SendButton" Content="Send" Click="SendButton_Click" Width="78" Canvas.Left="312" Margin="0" Canvas.Top="506" Height="28" BorderThickness="1"/>
+			<TextBox x:Name="EnterTextBox" Width="280" Margin="0" Text="Enter message..." Canvas.Left="10" Canvas.Top="505" ClipToBounds="True" BorderBrush="Black" BorderThickness="1"/>
+			<Label x:Name="MessengerLabel" Content="Messenger" Canvas.Left="142" Canvas.Top="10" FontSize="24"/>
+		</Canvas>
+
+	</Grid>
 </Window>
