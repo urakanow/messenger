@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfApp7
+namespace praktik_15._12._2023_messenger
 {
     /// <summary>
     /// Interaction logic for MessageControl.xaml
