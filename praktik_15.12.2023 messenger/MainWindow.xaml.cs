@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -121,7 +123,7 @@ namespace praktik_15._12._2023_messenger
             }
             else if (ClientServer == "server")
             {
-                userMessageViewModel.AddMessage(server, responseData);
+                userMessageViewModel.AddMessage(server, responseData, NotesContainer, MyScrollViewer);
 
                 DataContext = userMessageViewModel;
             }
