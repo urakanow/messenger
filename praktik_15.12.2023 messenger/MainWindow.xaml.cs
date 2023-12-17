@@ -102,7 +102,7 @@ namespace praktik_15._12._2023_messenger
         {
             MessageControl messageControl = new MessageControl(messageColors);
             string clientMessage = EnterTextBox.Text;
-            GetAndSendMessage(clientMessage);
+           // GetAndSendMessage(clientMessage);
 
             string username = "ur1nda";
             User server = new User() { Username = username };
@@ -111,7 +111,7 @@ namespace praktik_15._12._2023_messenger
             User client = new User() { Username = username2 };
 
             UserMessageViewModel userMessageViewModel = new UserMessageViewModel(server);
-            
+
 
             if (ClientServer == "client")
             {
@@ -119,13 +119,29 @@ namespace praktik_15._12._2023_messenger
 
                 DataContext = userMessageViewModel;
 
-                
+
             }
             else if (ClientServer == "server")
             {
                 userMessageViewModel.AddMessage(server, responseData, NotesContainer, MyScrollViewer);
 
                 DataContext = userMessageViewModel;
+            }
+        }
+
+        private void StartButton_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Visibility = Visibility.Visible;
+            Main.IsEnabled = true;
+            Start.Visibility = Visibility.Hidden;
+            Start.IsEnabled = false;
+
+            RadioButton selectedRadioButton = Start.Children.OfType<RadioButton>().FirstOrDefault(r => r.IsChecked == true);
+
+            if (selectedRadioButton != null)
+            {
+                string selectedRole = selectedRadioButton.Content.ToString();
+                MessageBox.Show($"You entered as {selectedRole}");
             }
         }
     }
